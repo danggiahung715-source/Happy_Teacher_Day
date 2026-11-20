@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 20/11 - Gửi Yuki Kimm 🌸🌷🌼</title>
+  
+  <!-- Google Fonts: Phông chữ trẻ trung, mềm mại, dễ thương -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@600;700&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas hiệu ứng cánh hoa và tim rơi -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ================= GIAI ĐOẠN 1: PHONG BÌ THƯ PASTEL ================= -->
+  <section class="envelope-screen" id="envelopeScreen">
+    <div class="envelope-wrapper">
+      
+      <!-- Hộp phong bì 3D -->
+      <div class="envelope" id="envelopeBox">
+        <div class="washi-tape-top"></div>
+        <div class="envelope-back"></div>
+        
+        <!-- Lá thư bên trong thò lên khi mở -->
+        <div class="letter-peek" id="letterPeek">
+          <div class="letter-peek-header">
+            <span class="tag">For Yuki Kimm 💌</span>
+            <div class="mini-stars">🌸🌷🌼</div>
+          </div>
+          <p class="peek-text">Happy Teacher's Day! ✨</p>
+        </div>
+
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        <div class="envelope-front"></div>
+
+        <!-- Tem niêm phong hình bông hoa cúc dễ thương -->
+        <div class="cute-seal" id="sealBtn" title="Nhấp vào để mở quà!">
+          <div class="seal-inner">
+            <span class="seal-flower">🌼</span>
+            <span class="seal-text">20/11</span>
+          </div>
+        </div>
+
+        <!-- Thẻ tag đính kèm phong bì -->
+        <div class="envelope-tag">
+          <i class="fa-solid fa-heart heart-tag"></i>
+          <span>Gửi : Yuki Kimm 🌸🌷🌼</span>
+        </div>
+      </div>
+
+      <!-- Lời nhắc nhấp mở thư -->
+      <div class="open-instruction">
+        <p class="pulse-text">
+          <i class="fa-regular fa-hand-pointer"></i> 
+          Chạm vào phong bì để nhận món quà nhỏ nhé!
+        </p>
+        <span class="badge-pill">Dành tặng cho cô giáo gen Z ✨</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= GIAI ĐOẠN 2 & 3: TRANG THIỆP & TƯƠNG TÁC ================= -->
+  <main class="main-container hidden" id="mainCard">
+    <div class="scrapbook-card">
+
+      <!-- Băng dán washi tape trang trí 4 góc -->
+      <div class="washi washi-top-left"></div>
+      <div class="washi washi-top-right"></div>
+      <div class="washi washi-bottom-left"></div>
+      <div class="washi washi-bottom-right"></div>
+
+      <!-- Huy hiệu / Tiêu đề đầu thiệp -->
+      <header class="card-header">
+        <div class="pill-badge">
+          <i class="fa-solid fa-sparkles"></i> Dành tặng cho cô giáo gen Z • 20/11
+        </div>
+        <h1 class="main-title">Gửi : Yuki Kimm 🌸🌷🌼</h1>
+        <p class="sub-title">Một chút năng lượng ngọt ngào gửi tặng cô giáo tương lai siêu đáng yêu!</p>
+      </header>
+
+      <!-- Nội dung chính: Khung ảnh + Bức thư -->
+      <section class="content-grid">
+        
+        <!-- Cột trái: Khung ảnh Polaroid đáng yêu -->
+        <aside class="polaroid-column">
+          <div class="polaroid-wrapper">
+            <div class="pin-badge">📌</div>
+            <div class="polaroid-photo">
+              <img id="friendPhoto" src="assets/friend.jpg" alt="Cô bạn thân yêu" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='./friend.jpg';}">
+              <div class="photo-overlay">
+                <button type="button" id="resetPhotoBtn" class="reset-photo-btn" title="Khôi phục ảnh gốc ban đầu" style="display: none;">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <label for="photoUploadInput" class="change-photo-btn" title="Thay bằng ảnh bạn muốn">
+                  <i class="fa-solid fa-camera"></i> Đổi ảnh
+                </label>
+                <input type="file" id="photoUploadInput" accept="image/*" style="display:none;">
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="caption-handwritten">"Mượn 1 tấm ảnh nhá =))"</span>
+              <div class="mini-decorations">
+                <span>🌸</span>
+                <span>🧋</span>
+                <span>✏️</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thông tin bạn nhận (Có thể chỉnh sửa nhanh) -->
+          <div class="recipient-box">
+            <span class="label">Người nhận:</span>
+            <span class="name-display" id="friendNameDisplay" title="Nhấp để sửa tên">Yuki Kimm 🌸🌷🌼</span>
+          </div>
+        </aside>
+
+        <!-- Cột phải: Lá thư tâm tình thân thiện & hòa nhã -->
+        <article class="letter-column">
+          <div class="letter-paper">
+            
+            <div class="letter-greeting">
+              <span class="greeting-text">Dear Yuki Kim thân mến, 💌</span>
+              <span class="date-tag">20/11/2026</span>
+            </div>
+
+            <div class="letter-body">
+              <p>
+                Nhân ngày 20/11, mình muốn gửi vài lời chúc đến cô giáo tương lai. Chúc cô giáo gen Z sẽ giữ được tình yêu với ngành sư phạm và luôn luôn nhiệt huyết dù ở bất kì đâu.
+              </p>
+              
+              <div class="wishes-checklist">
+                <div class="wish-item">
+                  <span class="wish-icon">📚</span>
+                  <span class="wish-text">Chúc cho bạn học tốt đạt được KPI như mong muốn!</span>
+                </div>
+                <div class="wish-item">
+                  <span class="wish-icon">💖</span>
+                  <span class="wish-text">Và chắc chắn rồi, chúc Yuki sớm có người thương nhé =)))</span>
+                </div>
+                <div class="wish-item">
+                  <span class="wish-icon">🏫</span>
+                  <span class="wish-text">Mong rằng ở tương lai gần mình có thể gặp nhau ở một nơi đặc biệt hơn như là ở lớp học chẳng hạn... 😉</span>
+                </div>
+                <div class="wish-item">
+                  <span class="wish-icon">✨</span>
+                  <span class="wish-text"><strong>Và điều quan trọng nhất:</strong> Luôn luôn xinh đẹp, yêu đời, hạnh phúc và tin vào những gì mình làm, những gì mình muốn ha! 🌸</span>
+                </div>
+              </div>
+
+              <p class="letter-closing">
+                Gửi trọn niềm tin và sự ủng hộ to lớn nhất đến cô giáo tương lai Yuki! Cố lên nhé! 🥰
+              </p>
+
+              <div class="signature-block">
+                <span class="from-text">From:</span>
+                <span class="sign-name">DGH ⭐</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ================= GIAI ĐOẠN 3: VƯỜN HOA RƠI VÀ BÙNG NỔ KHI ẤN ================= -->
+      <section class="flower-interactive-section">
+        <div class="flower-interactive-card">
+          <div class="flower-floating-icons">
+            <span class="anim-flower f1">🌸</span>
+            <span class="anim-flower f2">🌼</span>
+            <span class="anim-flower f3">🌷</span>
+          </div>
+          <div class="flower-interactive-content">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Mưa Hoa Tri Ân Dành Cho Yuki 🌸✨</h3>
+            <p>
+              Những bông hoa tươi thắm đang rơi nhẹ nhàng trên màn hình.  
+              <strong>Hãy nhấp chuột hoặc chạm vào bất kỳ đâu</strong> để ngàn đóa hoa nở rộ và bung tỏa nhé!
+            </p>
+          </div>
+          <button class="btn-bloom" id="bloomAllBtn" title="Bấm để hoa nở rộ toàn màn hình">
+            <span class="btn-icon">🌸</span> Bấm để hoa nở bung tỏa! ✨
+          </button>
+        </div>
+      </section>
+
+      <!-- Module 3: Góc Lưu Bút Mini (Ghi thêm lời nhắn) -->
+      <section class="guestbook-section">
+        <div class="guestbook-header">
+          <h3><i class="fa-solid fa-note-sticky"></i> Bảng Lời Nhắn Dễ Thương</h3>
+          <p>Dán thêm những lời chúc ngọt ngào lên bảng note nhé!</p>
+        </div>
+
+        <!-- Form nhập lời nhắn -->
+        <div class="guestbook-input-row">
+          <input type="text" id="noteInput" placeholder="Nhập lời chúc ngắn (ví dụ: Chúc cô giáo luôn vui vẻ!)..." maxlength="120">
+          <input type="text" id="authorInput" value="DGH" placeholder="Tên bạn..." maxlength="30">
+          <button id="addNoteBtn" class="btn-secondary">
+            <i class="fa-solid fa-paper-plane"></i> Dán lên bảng
+          </button>
+        </div>
+
+        <!-- Bảng hiển thị các tờ note dán -->
+        <div class="notes-grid" id="notesGrid">
+          <!-- Các note mặc định dành riêng cho Yuki -->
+          <div class="sticky-note note-yellow">
+            <div class="note-pin">📌</div>
+            <p class="note-text">"Chúc Yuki sớm có người thương và đạt mọi KPI nhé =)))"</p>
+            <span class="note-author">— DGH ⭐</span>
+          </div>
+
+          <div class="sticky-note note-pink">
+            <div class="note-pin">📌</div>
+            <p class="note-text">"Mong sớm được gặp cô giáo Yuki ở lớp học tương lai!"</p>
+            <span class="note-author">— Hẹn một ngày gần</span>
+          </div>
+
+          <div class="sticky-note note-green">
+            <div class="note-pin">📌</div>
+            <p class="note-text">"Luôn luôn xinh đẹp, yêu đời và tự tin với đam mê sư phạm nha!"</p>
+            <span class="note-author">— Team bạn thân</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer & Nút xem lại phong bì -->
+      <footer class="card-footer">
+        <p>Made with 💖 for a wonderful teacher and a great friend</p>
+        <button class="btn-replay" id="replayBtn">
+          <i class="fa-solid fa-envelope"></i> Đóng và mở lại từ đầu
+        </button>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
